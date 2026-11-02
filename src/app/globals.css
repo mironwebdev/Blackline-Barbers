@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  /* Palette — charcoal, warm off-white, muted greys. */
+  --color-ink: #141312;
+  --color-charcoal: #1c1b19;
+  --color-ash-800: #262421;
+  --color-ash-700: #34312d;
+  --color-ash-600: #4a4641;
+  --color-ash-500: #6b6660;
+  --color-ash-400: #8f8981;
+  --color-ash-300: #b3ada4;
+  --color-ash-200: #d6d0c6;
+  --color-bone: #ebe6dd;
+  --color-paper: #f4f1eb;
+
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+
+  --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
+  }
+}
+
+@layer components {
+  /* One grade for every photograph so the set reads as a single shoot. */
+  .photo-grade {
+    filter: grayscale(1) contrast(1.08) brightness(0.94);
+  }
+
+  /* Small tracked uppercase label used across sections. */
+  .eyebrow {
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* Display headline: tight, uppercase, heavy but not shouting. */
+  .display {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: -0.035em;
+    line-height: 0.9;
+  }
+
+  /* Underline link that draws in from the left. */
+  .rule-link {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    padding-bottom: 0.2em;
+    transition: background-size 0.45s var(--ease-out-soft);
+  }
+  .rule-link:hover {
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+  }
+
+  .nav-link {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    padding-bottom: 0.2em;
+    transition: background-size 0.45s var(--ease-out-soft);
+  }
+  .nav-link:hover {
+    background-size: 100% 1px;
+  }
+}
